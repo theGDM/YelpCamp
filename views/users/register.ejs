@@ -1,0 +1,51 @@
+<% layout("layouts/boilerplate") %> 
+<% layout("layouts/boilerplate") %> 
+<!-- <h1 class="text-center">Login</h1> -->
+<div class="container mt-2 mb-4">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-xl-6 offset-xl-3">
+        <div class="card shadow">
+            <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Register</h5>
+                <form action="/register" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+            <label class="form-label" for="c1">Username:</label>
+            <input class="form-control" type="text" placeholder="username" name="username" id="c1" required autofocus>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Username missing!
+           </div>
+           </div>
+           <div class="mb-3">
+            <label class="form-label" for="c2">Email:</label>
+            <input class="form-control" type="email" placeholder="xyz@gmail.com" name="email" id="c2" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Email missing!
+           </div>
+           </div>
+           <div class="mb-3">
+            <label class="form-label" for="c3">password:</label>
+            <input class="form-control" type="password" placeholder="password" name="password" id="c3" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Password missing!
+           </div>
+          </div>
+           <div class="d-grid gap-2">
+             <button class="btn btn-success" type="submit">Register</button>
+           </div>
+           </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+

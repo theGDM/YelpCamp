@@ -1,0 +1,65 @@
+<% layout("layouts/boilerplate") %> 
+    <div class="row mb-3">
+        <div class="col-md-6 offset-md-3 col-xl-6 offset-xl-3">
+        <div class="card shadow">
+            <div class="card-body">
+            <h1 class="text-center card-title center">New Campground</h1>
+            <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="c1">Title:</label>
+            <input class="form-control" type="text" placeholder="title" name="title" id="c1" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Title missing!
+           </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="c4">Location:</label>
+            <input class="form-control" type="text" placeholder="location" name="location" id="c4" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Location missing!
+           </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="c7">Campground Price:</label>
+            <div class="input-group">
+             <span class="input-group-text" id="price-label">$</span>
+            <input type="text" class="form-control" placeholder="0.00" name="price" aria-label="Username" id="c7" aria-describedby="price-label" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Price missing!
+           </div>
+        </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="c6">Description:</label>
+            <textarea class="form-control" type="text" placeholder="" name="description" id="c6" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Description missing!
+           </div>
+        </div>
+        <div>
+           <label class="form-label" for="c5">Upload Image(s):</label>
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="c5" aria-describedby="imageUpload" aria-label="Upload" name="image" multiple>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary">Add Campground</button>
+            <a class="btn btn-warning" href="/campgrounds">All Campground</a>
+        </div>
+    </form>
+          </div>
+        </div>
+        </div>
+    </div>

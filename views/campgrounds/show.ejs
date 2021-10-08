@@ -1,0 +1,120 @@
+<% layout("layouts/boilerplate") %> 
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row mb-3">
+    <div class="col-6">     
+        <% if(campFind.images.length){ %> 
+        <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="<%= campFind.images[0].url %>" class="d-block w-100" alt="...">
+                </div>
+              <% for(let i=1;i<campFind.images.length;++i){ %> 
+                <div class="carousel-item">
+                    <img src="<%= campFind.images[i].url %>" class="d-block w-100" alt="...">
+                </div>
+              <% } %> 
+         </div>
+         <% if(campFind.images.length>1){ %> 
+         <button class="carousel-control-prev" type="button" data-bs-target="#campgroundCarousel" data-bs-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#campgroundCarousel" data-bs-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Next</span>
+         </button>
+         <% } %> 
+        </div>
+        <% } %> 
+        <div class="card mb-3">
+          <div class="card-body">
+             <h5 class="card-title fw-bolder fs-1"><%= campFind.title %></h5>
+             <p class="card-text"><%= campFind.description %></p>
+         </div>
+    <ul class="list-group list-group-flush">
+          <li class="list-group-item text-muted"><%= campFind.location %></li>
+          <li class="list-group-item">Submitted by <%= campFind.author.username %></li>
+          <li class="list-group-item">$<%= campFind.price %>/Night</li>
+    </ul>
+   <% if(currentUser && campFind.author.equals(currentUser._id)){ %> 
+  <div class="card-body">
+    <a href="/campgrounds/<%= campFind._id %>/edit" class="card-link btn btn-info">Edit Campground</a>
+    <form class="d-inline" action="/campgrounds/<%= campFind._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">Delete Campground</button>
+    </form>
+  </div>
+  <% } %> 
+  <div class="card-footer text-muted">
+        2 days ago
+  </div>
+        </div>  
+    </div> 
+    <div class="col-6">
+        <div id='map'></div>
+        <% if(currentUser){ %>
+        <h2>Leave a Review:</h2>
+        <form action="/campgrounds/<%= campFind._id %>/reviews" method="POST" class="validated-form mb-3" novalidate>
+            <div class="mb-2">
+                <fieldset class="starability-basic">
+                   <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+                   <input type="radio" id="first-rate1" name="rating" value="1" />
+                   <label for="first-rate1" title="Terrible">1 star</label>
+                   <input type="radio" id="first-rate2" name="rating" value="2" />
+                   <label for="first-rate2" title="Not good">2 stars</label>
+                   <input type="radio" id="first-rate3" name="rating" value="3" />
+                   <label for="first-rate3" title="Average">3 stars</label>
+                   <input type="radio" id="first-rate4" name="rating" value="4" />
+                   <label for="first-rate4" title="Very good">4 stars</label>
+                   <input type="radio" id="first-rate5" name="rating" value="5" />
+                   <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Comment:</label>
+                <textarea class="form-control" name="body" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Review text missing!
+                </div>
+                </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+        <% } %>
+            <% for(let review of campFind.reviews){ %>
+            <div class="card mb-2">
+               <div class="card-body py-2">
+               <h5 class="card-title mb-2"><%= review.author.username %></h5>
+               <p class="starability-result" data-rating="<%= review.rating %>">
+                   Rated: <%= review.rating %> stars
+               </p>
+                <!-- <div class="card-title mb-0">
+                     <% for(let i=1;i<= review.rating; ++i){ %>
+                     <h1 class="d-inline text-warning gap-0">&#9733</h1> 
+                     <% } %>
+                     <% for(let i=1;i<=5-review.rating; ++i){ %>
+                     <h1 class="d-inline text-warning">&#9734</h1>
+                     <% } %>
+                </div> -->
+                <p class="card-text"><h6 class="d-inline">Review:</h6> <%= review.body %></p>
+                <% if(currentUser && review.author.equals(currentUser._id)){ %>
+                <form action="/campgrounds/<%= campFind._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <% } %> 
+                </div>
+            </div>
+            <% } %>   
+    </div> 
+</div>
+
+<script>
+    const mapToken= '<%- process.env.Mapbox_Token %>';
+    const campground = <%- JSON.stringify(campFind) %>
+</script>
+<!-- so now let's get this map to be centered on the actual location and put a marker at that actual location as well, so what we 
+need to do is basically the same process that we use to get our mapToken where we use the ejs to create a javascript variable that
+we had access to over here in our js file. We are just handing off data from the server side to the client side. -->
+<script src="/Javascripts/showPageMap.js"></script>
