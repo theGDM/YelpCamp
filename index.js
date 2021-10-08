@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
+
 // console.log(process.env.Cloudinary_CLOUD_Name);
 // console.log(process.env.Cloudinary_Key);
 // console.log(process.env.Cloudinary_Secret);
@@ -21,7 +22,8 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
-
+// const dbUrl = process.env.DB_URL;
+//'mongodb://localhost:27017/yep-camp'
 mongoose.connect('mongodb://localhost:27017/yep-camp', {
     useNewUrlParser: true,
     useCreateIndex: true,
