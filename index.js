@@ -22,9 +22,10 @@ const reviewRoutes = require("./routes/reviews");
 const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
-// const dbUrl = process.env.DB_URL;
+const MongoStore = require('connect-mongo');
+const dbUrl = process.env.DB_URL;
 //'mongodb://localhost:27017/yep-camp'
-mongoose.connect('mongodb://localhost:27017/yep-camp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -46,14 +47,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60, // time period in seconds
+    crypto: {
+        secret:"yelpcamp"
+    }
+});
+
+store.on("error", function (e) {
+    console.log("session store error", e);
+})
+
 const sessionConfig = {
+    store:store,
     name: "_yOyO",
     secret:"yelpcamp",
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,// this basically says that cookies are only accessible over HTTP, they are not accessible through js.
-        // secure:true,
+        // secure:true, //this will break stuff untill you make the site https but it will break stuff with local host since localhost is not https.
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge:7 * 24 * 60 * 60 * 1000
     }
