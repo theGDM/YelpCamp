@@ -2,6 +2,9 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
 
+// console.log(process.env.Cloudinary_CLOUD_Name);
+// console.log(process.env.Cloudinary_Key);
+// console.log(process.env.Cloudinary_Secret);
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -20,11 +23,6 @@ const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const MongoStore = require('connect-mongo');
-
-// const dbUrl = 'mongodb://localhost:27017/yep-camp';
-// if (process.env.NODE_ENV === "production") {
-//     dbUrl = process.env.DB_URL;
-// }
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yep-camp';
 
 mongoose.connect(dbUrl, {
@@ -55,7 +53,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60, // time period in seconds
     crypto: {
-        secret:secret
+        secret
     }
 });
 
@@ -66,7 +64,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store:store,
     name: "_yOyO",
-    secret:secret,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
