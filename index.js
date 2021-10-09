@@ -23,8 +23,8 @@ const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const MongoStore = require('connect-mongo');
-const dbUrl = process.env.DB_URL;
-//'mongodb://localhost:27017/yep-camp'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yep-camp';
+
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -47,11 +47,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const secret = process.env.SECRET || "yelpcamp";
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60, // time period in seconds
     crypto: {
-        secret:"yelpcamp"
+        secret
     }
 });
 
@@ -62,7 +64,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store:store,
     name: "_yOyO",
-    secret:"yelpcamp",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
