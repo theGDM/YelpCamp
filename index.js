@@ -124,8 +124,8 @@ app.use(
                 "data:",
                 "https://res.cloudinary.com/douqbebwk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
                 "https://images.unsplash.com/",
-                "https://res.cloudinary.com/gdm-projects/image/upload/v1632737799/YelpCamp/b4pvhhhtwhp2tg1kiiaw.jpg",
-                "https://res.cloudinary.com/gdm-projects/image/upload/v1632737714/YelpCamp/ddnnvxisqvnoi04ct5h1.jpg"
+                "https://res.cloudinary.com/gdm-projects/image/upload/v1632737799/YelpCamp/",
+                "https://cloudinary.com/console/c-6af82db3fe6ac132a643e918870893/media_library/folders/be13200df90928e31dffffd9b5aa55081b"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
