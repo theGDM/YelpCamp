@@ -119,10 +119,9 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
+                "https://res.cloudinary.com/",
                 "https://res.cloudinary.com/douqbebwk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
                 "https://images.unsplash.com/",
-                "https://res.cloudinary.com/gdm-projects/image/upload/v1632737799/YelpCamp/",
-                "https://cloudinary.com/console/c-6af82db3fe6ac132a643e918870893/media_library/folders/be13200df90928e31dffffd9b5aa55081b"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
