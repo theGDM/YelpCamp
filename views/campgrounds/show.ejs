@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/stars.css">
 
 <div class="row mb-3">
-    <div class="col-6">     
+    <div class="col-sm-6 col-12">     
         <% if(campFind.images.length){ %> 
         <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -39,10 +39,12 @@
     </ul>
    <% if(currentUser && campFind.author.equals(currentUser._id)){ %> 
   <div class="card-body">
-    <a href="/campgrounds/<%= campFind._id %>/edit" class="card-link btn btn-info">Edit Campground</a>
-    <form class="d-inline" action="/campgrounds/<%= campFind._id %>?_method=DELETE" method="POST">
+      <div class="d-grid gap-2">
+    <a href="/campgrounds/<%= campFind._id %>/edit" class="card-link btn btn-warning">Edit Campground</a>
+    <form class="d-grid" action="/campgrounds/<%= campFind._id %>?_method=DELETE" method="POST">
         <button class="btn btn-danger">Delete Campground</button>
     </form>
+    </div>
   </div>
   <% } %> 
   <div class="card-footer text-muted">
@@ -50,8 +52,8 @@
   </div>
         </div>  
     </div> 
-    <div class="col-6">
-        <div id='map'></div>
+    <div class="col-sm-6 col-12">
+        <div id='map' class="mb-3"></div>
         <% if(currentUser){ %>
         <h2>Leave a Review:</h2>
         <form action="/campgrounds/<%= campFind._id %>/reviews" method="POST" class="validated-form mb-3" novalidate>
