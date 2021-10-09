@@ -20,7 +20,6 @@ const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const MongoStore = require('connect-mongo');
-const { prototype } = require("module");
 
 // const dbUrl = 'mongodb://localhost:27017/yep-camp';
 // if (process.env.NODE_ENV === "production") {
