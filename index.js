@@ -2,9 +2,6 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
 
-// console.log(process.env.Cloudinary_CLOUD_Name);
-// console.log(process.env.Cloudinary_Key);
-// console.log(process.env.Cloudinary_Secret);
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -23,7 +20,7 @@ const userRoutes = require("./routes/users");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const MongoStore = require('connect-mongo');
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yep-camp';
+const dbUrl = 'mongodb://localhost:27017/yep-camp';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -182,7 +179,7 @@ app.use((err, req, res, next) => {
 //so if i go to some route that doesn't exists and we get page not found!!, Now if i go to some other page that causes an error, like
 //some id that doesn't exist we will get this error (Cast to ObjectId failed for value "6138f22583610221gc1b745c" (type string) at path "_id" for model "Campground")
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
