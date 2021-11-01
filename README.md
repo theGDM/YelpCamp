@@ -45,7 +45,7 @@ globe with full backend support, this is the project which i made along with my 
 
 **Campgrounds Page**
 
-![Annotation 2021-10-31 183052](https://user-images.githubusercontent.com/89511377/139585195-f8655ddc-43ba-4cda-9d18-a664426914cd.jpg)
+![Annotation 2021-10-31 183052 (2)](https://user-images.githubusercontent.com/89511377/139620865-c4d4159f-34c3-46a4-baf1-93992febb2f1.jpg)
 ![Annotation 2021-10-31 183135](https://user-images.githubusercontent.com/89511377/139585253-36644d07-61f9-49c8-a321-d9edbe2a9858.jpg)
 
 
